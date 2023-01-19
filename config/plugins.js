@@ -35,5 +35,18 @@ module.exports = ({ env }) => ({
     },
   },
   // ...
+  // ...
+  email: {
+    config: {
+      provider: 'sendgrid', // For community providers pass the full package name (e.g. provider: 'strapi-provider-email-mandrill')
+     
+      settings: {
+        defaultFrom: 'houssin.carnelian@gmail.com',
+        defaultReplyTo: 'houssin.carnelian@gmail.com',
+        testAddress: 'houssin.carnelian@gmail.com',
+      },
+    },
+  },
+  // ...
 
 });
