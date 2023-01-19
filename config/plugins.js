@@ -17,36 +17,19 @@ module.exports = ({ env }) => ({
   // ...
   // ...
   email: {
-    config: {
-      provider: 'nodemailer',
-      providerOptions: {
-        host: env('SMTP_HOST'),
-        port: env('SMTP_PORT'),
-        auth: {
-          user: env('SMTP_USERNAME'),
-          pass: env('SMTP_PASSWORD'),
-        },
-        // ... any custom nodemailer options
-      },
-      settings: {
-        defaultFrom: 'houssin.carnelian@gmail.com',
-        defaultReplyTo: 'houssin.carnelian@gmail.com',
+    provider: env('EMAIL_PROVIDER'),
+    providerOptions: {
+      host: env('SMTP_HOST', 'smtp-relay.sendinblue.com'),
+      port: env('SMTP_PORT', 587),
+      auth: {
+        user: env('SMTP_USERNAME'),
+        pass: env('SMTP_PASSWORD'),
       },
     },
-  },
-  // ...
-  // ...
-  email: {
-    config: {
-      provider: 'sendgrid', // For community providers pass the full package name (e.g. provider: 'strapi-provider-email-mandrill')
-     
-      settings: {
-        defaultFrom: 'houssin.carnelian@gmail.com',
-        defaultReplyTo: 'houssin.carnelian@gmail.com',
-        testAddress: 'houssin.carnelian@gmail.com',
-      },
+    settings: {
+      defaultFrom: env('houssin.carnelian@gmail.com'),
+      defaultReplyTo: env('houssin.carnelian@gmail.com'),
     },
   },
-  // ...
 
 });
