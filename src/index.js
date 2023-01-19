@@ -7,7 +7,7 @@ module.exports = {
    *
    * This gives you an opportunity to extend code.
    */
-  register(/*{ strapi }*/) {},
+  register(/*{ strapi }*/) { },
 
   /**
    * An asynchronous bootstrap function that runs before
@@ -16,5 +16,33 @@ module.exports = {
    * This gives you an opportunity to set up your data model,
    * run jobs, or perform some special logic.
    */
-  bootstrap(/*{ strapi }*/) {},
+  bootstrap(/*{ strapi }*/) {
+    strapi.db.lifecycles.subscribe({
+      models: ["plugin::users-permissions.user"],
+
+      // Send email to new user
+      async afterCreate({ params }) {
+        const {
+          data: { email, username },
+        } = params;
+
+        try {
+          await strapi.plugins['email'].services.email.send({
+            to: `${email}`,
+            from: `${process.env.SENDGRID_DEFAULT_FROM}`,
+            replyTo: `${process.env.SENDGRID_DEFAULT_TO}`,
+            cc: 'valid email address',
+            bcc: 'valid email address',
+            replyTo: 'valid email address',
+            subject: `${username}, Welcome to the ....`,
+            html: `<p>${username}</p><p>Welcome to ....</p> 
+       <p>${process.env.CLIENT_BASE_URL}/confirm-email</p>`,
+
+          })
+        } catch (err) {
+          console.log(err);
+        }
+      },
+    });
+  },
 };
