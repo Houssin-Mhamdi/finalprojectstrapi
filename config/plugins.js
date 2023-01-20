@@ -1,5 +1,5 @@
 module.exports = ({ env }) => ({
-  // ...
+  
   upload: {
     config: {
       provider: 'cloudinary',
@@ -15,23 +15,17 @@ module.exports = ({ env }) => ({
     },
   },
   // ...
-  // ...
-  email: {
-    provider: env('EMAIL_PROVIDER'),
-    providerOptions: {
-      host: env('EMAIL_SMTP_HOST', 'smtp-relay.sendinblue.com'),
-      port: env('EMAIL_SMTP_PORT', 587),
-      auth: {
-        user: env('EMAIL_SMTP_USER'),
-        pass: env('EMAIL_SMTP_PASS'),
+    email: {
+      provider: "sendgrid",
+      providerOptions: {
+        apiKey: env("SENDGRID_API_KEY"),
+      },
+      settings: {
+        defaultFrom: "houssin.carnelian@gmail.com",
+        defaultReplyTo: "houssin.carnelian@gmail.com",
       },
     },
-    settings: {
-      defaultFrom: env('EMAIL_ADDRESS_FROM'),
-      defaultReplyTo: env('EMAIL_ADDRESS_REPLY'),
-    },
-  },
-  // ...
 
+  
   // ...
 });
