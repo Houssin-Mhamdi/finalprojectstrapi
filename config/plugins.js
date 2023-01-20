@@ -17,22 +17,21 @@ module.exports = ({ env }) => ({
   // ...
   // ...
   email: {
-    config: {
-      provider: 'nodemailer',
-      providerOptions: {
-        host: env('SMTP_HOST', 'smtp-relay.sendinblue.com'),
-        port: env('SMTP_PORT', 587),
-        auth: {
-          user: env('SMTP_USERNAME'),
-          pass: env('SMTP_PASSWORD'),
-        },
-        // ... any custom nodemailer options
-      },
-      settings: {
-        defaultFrom: 'houssin.carnelian@gmail.com',
-        defaultReplyTo: 'houssin.carnelian@gmail.com',
+    provider: env('EMAIL_PROVIDER'),
+    providerOptions: {
+      host: env('EMAIL_SMTP_HOST', 'smtp-relay.sendinblue.com'),
+      port: env('EMAIL_SMTP_PORT', 587),
+      auth: {
+        user: env('EMAIL_SMTP_USER'),
+        pass: env('EMAIL_SMTP_PASS'),
       },
     },
+    settings: {
+      defaultFrom: env('EMAIL_ADDRESS_FROM'),
+      defaultReplyTo: env('EMAIL_ADDRESS_REPLY'),
+    },
   },
+  // ...
+
   // ...
 });
