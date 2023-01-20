@@ -17,19 +17,19 @@ module.exports = ({ env }) => ({
   // ...
   // ...
   email: {
-    provider: env('EMAIL_PROVIDER'),
-    providerOptions: {
-      host: env('SMTP_HOST', 'smtp-relay.sendinblue.com'),
-      port: env('SMTP_PORT', 587),
-      auth: {
-        user: env('SMTP_USERNAME'),
-        pass: env('SMTP_PASSWORD'),
+    config: {
+      provider: 'mailgun',
+      providerOptions: {
+        key: env('MAILGUN_API_KEY'), // Required
+        domain: env('MAILGUN_DOMAIN'), // Required
+        url: env('MAILGUN_URL', 'https://api.mailgun.net'), //Optional. If domain region is Europe use 'https://api.eu.mailgun.net'
+      },
+      settings: {
+        defaultFrom: 'houssin.carnelian@gmail.com',
+        defaultReplyTo: 'houssin.carnelian@gmail.com',
       },
     },
-    settings: {
-      defaultFrom: env('houssin.carnelian@gmail.com'),
-      defaultReplyTo: env('houssin.carnelian@gmail.com'),
-    },
   },
+  // ...
 
 });
