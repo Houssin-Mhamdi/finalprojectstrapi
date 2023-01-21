@@ -12,15 +12,12 @@
   "dependencies": {
     "@strapi/plugin-i18n": "4.5.6",
     "@strapi/plugin-users-permissions": "4.5.6",
-    "@strapi/provider-email-mailgun": "^4.5.6",
     "@strapi/provider-email-nodemailer": "^4.5.6",
-    "@strapi/provider-email-sendgrid": "^4.5.6",
     "@strapi/provider-upload-cloudinary": "^4.5.6",
     "@strapi/strapi": "4.5.6",
     "nodemailer": "^6.9.0",
     "pg": "8.6.0",
-    "strapi-plugin-email": "^3.6.11",
-    "strapi-provider-email-nodemailer": "^3.6.11"
+    "strapi-plugin-email": "^3.6.11"
   },
   "author": {
     "name": "A Strapi developer"

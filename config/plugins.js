@@ -16,13 +16,16 @@ module.exports = ({ env }) => ({
   },
   // ...
   email: {
-    provider: 'nodemailer',
-    providerOptions: {
-      host: env('EMAIL_SMTP_HOST'),
-      port: env('EMAIL_SMTP_PORT'),
-      auth: {
-        user: env('EMAIL_SMTP_USER'),
-        pass: env('EMAIL_SMTP_PASS'),
+    config: {
+      provider: 'nodemailer',
+      providerOptions: {
+        host: env('SMTP_HOST', 'smtp-relay.sendinblue.com'),
+        port: env('SMTP_PORT', 587),
+        auth: {
+          user: env('SMTP_USERNAME'),
+          pass: env('SMTP_PASSWORD'),
+        },
+        // ... any custom nodemailer options
       },
       settings: {
         defaultFrom: 'houssin.carnelian@gmail.com',
@@ -30,7 +33,4 @@ module.exports = ({ env }) => ({
       },
     },
   },
-
-
-  // ...
 });
