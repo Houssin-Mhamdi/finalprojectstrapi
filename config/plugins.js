@@ -25,7 +25,7 @@ module.exports = ({ env }) => ({
           user: env('SMTP_USERNAME'),
           pass: env('SMTP_PASSWORD'),
         },
-        // ... any custom nodemailer options
+        
       },
       settings: {
         defaultFrom: 'houssin.carnelian@gmail.com',
